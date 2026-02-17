@@ -1,0 +1,20 @@
+frontend/
+│
+├── index.html
+├── login.html
+├── dashboard.html
+│
+├── css/
+│   ├── main.css
+│   └── dashboard.css
+│
+├── js/
+│   ├── api.js
+│   ├── auth.js
+│   ├── products.js
+│   ├── users.js
+│   └── inventory.js
+│
+└── assets/
+    ├── images/
+    └── icons/
