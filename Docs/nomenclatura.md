@@ -25,24 +25,25 @@ El objetivo es evitar errores de integración, mejorar la legibilidad del códig
 
 ## 2.1 Tablas
 
-* Formato obligatorio: `snake_case`
+* Formato obligatorio: `PascalCase`
 * Usar nombres en singular
 * No usar prefijos como `tbl`
-* No usar mayúsculas completas
+* No usar guiones ni espacios
 
 ✅ Correcto:
 
 ```sql
-cliente
-producto
-detalle_venta
-usuario
+Cliente
+Producto
+DetalleVenta
+Usuario
 ```
 
 ❌ Incorrecto:
 
 ```sql
-Clientes
+cliente
+detalle_venta
 tblClientes
 CLIENTE
 ```
@@ -51,7 +52,7 @@ CLIENTE
 
 ## 2.2 Columnas
 
-* Formato obligatorio: `snake_case`
+* Formato obligatorio: `camelCase`
 * Sin espacios
 * Nombres descriptivos
 
@@ -59,12 +60,11 @@ Ejemplo:
 
 ```sql
 id
-nombre_cliente
-correo
-telefono
-fecha_creacion
-precio_unitario
-cantidad_stock
+nombreCliente
+correo	elefono
+fechaCreacion
+precioUnitario
+cantidadStock
 ```
 
 ---
@@ -84,15 +84,15 @@ id
 Formato obligatorio:
 
 ```sql
-cliente_id
-producto_id
-usuario_id
+clienteId
+productoId
+usuarioId
 ```
 
 Regla:
 
 ```
-nombre_tabla + _id
+nombreTabla + Id
 ```
 
 ---
@@ -147,29 +147,36 @@ actualizarStock();
 
 ## 3.4 Relación Base de Datos ↔ Java
 
-Cuando exista una columna en base de datos:
+Cuando exista una tabla y columna en base de datos:
 
 ```sql
-nombre_cliente
+Cliente
+nombreCliente
 ```
 
-Debe existir el atributo correspondiente en Java:
+Debe existir la clase y atributo correspondiente en Java:
 
 ```java
-private String nombreCliente;
+public class Cliente {
+    private String nombreCliente;
+}
 ```
 
 Si se utiliza JPA:
 
 ```java
-@Column(name = "nombre_cliente")
+@Column(name = "nombreCliente")
 private String nombreCliente;
 ```
 
 Regla obligatoria:
 
-* `snake_case` en base de datos
-* `camelCase` en atributos Java
+* `PascalCase` para tablas
+* `camelCase` para columnas
+* `PascalCase` para clases
+* `camelCase` para atributos
+
+La base de datos y el backend deben mantener coherencia directa en los nombres.
 
 ---
 
@@ -233,7 +240,7 @@ DELETE /usuarios/{id}
 
 # 📌 7. Reglas Generales Obligatorias
 
-* No mezclar estilos (`snake_case`, `camelCase`, `PascalCase`) fuera de su contexto.
+* No mezclar estilos (`camelCase`, `PascalCase`) fuera de su contexto.
 * No usar espacios en nombres de base de datos.
 * No alternar entre singular y plural sin criterio.
 * Mantener coherencia semántica entre Base de Datos, Backend y Frontend.
@@ -245,8 +252,8 @@ DELETE /usuarios/{id}
 
 | Capa           | Convención            |
 | -------------- | --------------------- |
-| Tablas         | snake_case (singular) |
-| Columnas       | snake_case            |
+| Tablas         | PascalCase (singular) |
+| Columnas       | camelCase             |
 | Clases Java    | PascalCase            |
 | Atributos Java | camelCase             |
 | Métodos        | camelCase             |
